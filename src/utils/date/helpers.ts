@@ -661,7 +661,10 @@ export function getDateParts(date: Date, locale: Locale): DateParts {
   const weekdayOrdinal = Math.floor((day - 1) / 7 + 1);
   const weekdayOrdinalFromEnd = Math.floor((monthParts.numDays - day) / 7 + 1);
   const week = Math.ceil(
-    (day + Math.abs(monthParts.firstWeekday - monthParts.firstDayOfWeek)) / 7,
+    (day +
+      ((monthParts.firstWeekday - monthParts.firstDayOfWeek + daysInWeek) %
+        daysInWeek)) /
+      7,
   );
   const weekFromEnd = monthParts.numWeeks - week + 1;
   const weeknumber = monthParts.weeknumbers[week];
